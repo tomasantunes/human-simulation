@@ -144,9 +144,12 @@ app.get("/", (req, res) => {
 app.get("/posts", (req, res) => {
   con.query("SELECT * FROM posts WHERE DATE(dt) = DATE(NOW())", function (err, result, fields) {
     if (err) throw err;
-    res.send(result);
+    res.json(result);
   });
+});
 
+app.get("/home", (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // catch 404 and forward to error handler
